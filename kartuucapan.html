@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HBD Bang Koding Dari Micola</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+  </head>
+  <body
+    style="
+      background-image: url(https://i.redd.it/0k6meqvps4h91.gif);
+      min-height: 100vh;
+      min-width: 100vw;
+    "
+    class="flex justify-center items-center"
+  >
+    <div
+      class="bg-white border-4 border-gray-300 shadow-lg shadow-blue-300 rounded-xl text-center animate__animated animate__backInDown overflow-auto"
+      id="kartu"
+      style="width: 1080px; height: 720px; min-width: 1080px; min-height: 720px;"
+    >
+      <div class="h-full flex flex-col justify-center items-center p-16">
+        <h1 class="text-6xl mb-8">Happy Birthday</h1>
+        <h1
+          class="text-8xl text-blue-500 font-bold animate__animated animate__pulse animate__infinite"
+        >
+          Yang Muliaa
+        </h1>
+        <input
+          type="number"
+          id="umurInput"
+          placeholder="Masukkan umur kamu"
+          class="p-4 border-2 border-gray-300 rounded mt-8 text-2xl text-center w-1/2"
+        />
+        <button
+          id="submitButton"
+          class="p-6 bg-blue-600 text-white rounded mt-12 hover:bg-blue-900 transition ease-in text-3xl w-1/2 mx-auto animate__animated animate__delay-1s animate__tada"
+          onclick="cekUmur()"
+        >
+          Pencet disini!
+        </button>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script>
+    <script>
+      confetti({
+        particleCount: 100,
+        spread: 70,
+        origin: { y: 0.6 },
+      });
+
+      let kartu = document.getElementById("kartu");
+      let submitButton = document.getElementById("submitButton");
+      let umurInput = document.getElementById("umurInput");
+
+      function cekUmur() {
+        let umur = umurInput.value.trim();
+        if (umur === "" || isNaN(umur)) {
+          // Jika input kosong atau bukan angka, tombol bergerak tidak beraturan
+          submitButton.style.position = "absolute";
+          submitButton.style.left = `${Math.random() * 80}%`;
+          submitButton.style.top = `${Math.random() * 80}%`;
+          submitButton.classList.add("animate__shakeX");
+          setTimeout(() => {
+            submitButton.classList.remove("animate__shakeX");
+          }, 1000);
+        } else {
+          ubahKartu();
+        }
+      }
+
+      function ubahKartu() {
+        kartu.innerHTML = `    
+          <div class="h-full flex flex-col justify-center items-center p-16">
+            <h1 class="font-semibold text-4xl leading-relaxed animate__animated animate__zoomIn">
+              Selamat ulang tahun, bro! Semoga tahun ini makin banyak kebahagiaan,
+              rezeki lancar, dan segala impian jadi kenyataan. Semoga kita terus bisa
+              bareng-bareng, seru-seruan, dan saling dukung ya! 🎉🎂
+            </h1>
+            <h2 class="mt-12 text-3xl animate__animated animate__fadeIn">
+              - Dari : Micola Arighi -
+            </h2>
+            <button
+              class="p-6 bg-slate-600 text-white rounded mt-12 hover:bg-slate-900 transition ease-in text-3xl w-1/2 mx-auto animate__animated animate__delay -1s animate__tada"
+              onclick="refresh()"
+            >
+              Tutup
+            </button>
+          </div>`;
+      }
+
+      function refresh() {
+        location.reload();
+      }
+    </script>
+  </body>
+</html>
